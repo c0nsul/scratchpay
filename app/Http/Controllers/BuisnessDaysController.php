@@ -81,13 +81,13 @@ class BuisnessDaysController extends Controller
     public function calculateData($startDate, $delay)
     {
 
-        $holydaysArray = array('01-01', '01-06', '04-25', '05-01', '06-02', '08-15', '11-01', '12-08', '12-25', '12-26');
+        $holydaysArray = array('01-01', '01-06', '04-25', '05-01', '06-02', '08-15', '11-01', '11-11', '12-08', '12-25', '12-26');
         $weekendDays = $holydays = 0;
         $endTimestamp = $startTimestamp = strtotime($startDate);
 
         for ($days = 0; $days <= $delay; $days++) {
 
-            if ($days > 1) {
+            if ($days > 0) {
                 $endTimestamp = $endTimestamp + (60 * 60 * 24);
             }
 
@@ -100,6 +100,11 @@ class BuisnessDaysController extends Controller
                     $delay++;
                 }
             } else {
+                $mmgg = date('m-d', $endTimestamp);
+                if (in_array($mmgg, $holydaysArray)) {
+                    $holydays++;
+                }
+
                 $weekendDays++;
                 $delay++;
             }
