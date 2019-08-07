@@ -43,4 +43,5 @@ with a body like this:
   "delay": 10
 }
 ```
-
+##  Testing
+From the application root folder, run vendor/bin/phpunit
